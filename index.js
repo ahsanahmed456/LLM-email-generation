@@ -24,7 +24,7 @@ app.use(express.json());
 
 app.get('/', async(req,res)=>{
   
-  console.log("hi from ahsan's server")
+  console.log("hi from Email generator's server")
 })
 
 
@@ -45,6 +45,7 @@ const emailCategories = [
   "Internal"          // Team updates, memos, status reports
 ];
 
+const painPoints = ['Fragmented Access Control',"Overexposure of Sensitive Data","Manual Data Discovery and Classification", "Complex Policy Management","Ineffective Audit and Compliance Reporting","Vendor Lock-in and Closed Standards","Risky Data Sharing","Delayed Cloud Adoption"] 
 
 const message = `You are an assistant helping with professional email communication. I will give you the most recent email in an ongoing conversation.
 

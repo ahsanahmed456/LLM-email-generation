@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema(
   {},
-  { strict: false, collection: "Activity_analytics", timestamps: true }
+  { strict: false, collection: "adaptive-sequence-emailTemplatesCTAPerLead", timestamps: true }
 );
 
 // Schema.plugin(aggregatePaginate);
@@ -12,6 +12,6 @@ const Schema = mongoose.Schema(
 //Schema.plugin(mongoosePaginate); 
 
 
-module.exports = mongoose.model("Activity_analytics", Schema);
+module.exports = mongoose.model("adaptive-sequence-emailTemplatesCTAPerLead", Schema);
 
    
