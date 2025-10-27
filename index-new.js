@@ -7,6 +7,7 @@ const crypto = require("crypto")
 const datasets = require('./models/dataset')
 const adaptiveSequenceEmailTemplatesCTAPerLead = require('./models/adaptiveSequenceEmailTemplatesCTAPerLead')
 const adaptiveSequenceEmailsSentHistory = require('./models/adaptiveSequenceEmailsSentHistory')
+const adaptiveSequencePainPointsUsedPerLead = require('./models/adaptiveSequencePainPointsUsedPerLead')
 
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -36,8 +37,11 @@ app.post('/runTest', async(req,res)=>{
     console.log("hit with , : ",  req.body)
 const RandomId = crypto.randomUUID()
 
-const LeadEmails = await adaptiveSequenceEmailTemplatesCTAPerLead.find({id:"00QQU000001XILn2AO",sf_organization_id:"00D4T000000DicaUAC"}).limit(1).lean();
-const emailData =  LeadEmails[0] 
+// const LeadEmails = await adaptiveSequenceEmailTemplatesCTAPerLead.find({id:"00QQU000001XILn2AO",sf_organization_id:"00D4T000000DicaUAC"}).limit(1).lean();
+const LeadEmails = await adaptiveSequenceEmailTemplatesCTAPerLead.find({sf_organization_id:"00D4T000000DicaUAC"}).limit(500).lean();
+
+for(let emailData of LeadEmails){
+// const emailData =  LeadEmails[0] 
 const replyTo = `ahsan+${RandomId}@loglens.io`
 const from = 'testmail@ahsan-mailer.loglens.io'
 const LeadId = emailData['id']
@@ -69,20 +73,20 @@ console.log("LeadEmails : ", emailData)
       replyTo: replyTo
     }
 
-  await adaptiveSequenceEmailsSentHistory.create({sf_organization_id:"00D4T000000DicaUAC",criteria:emailData['criteria'],alreadyCounted:false,html:injectCTAValues(emailData['personalizedEmail']['email'],LeadId,RandomId),replyTo: replyTo,to:to,from:from,'cta':emailData['cta'],'painpoint':emailData['painpoint'],EmailID:RandomId,LeadId: LeadId,email:emailData['personalizedEmail']['email'],})
+  await adaptiveSequenceEmailsSentHistory.create({sf_organization_id:"00D4T000000DicaUAC",criteria:emailData['criteria'],alreadyCounted:false,html:injectCTAValues(emailData['personalizedEmail']['email'],LeadId,RandomId),replyTo: replyTo,to:to,from:from,'cta':emailData['cta'],'painpoint':emailData['painpoint'],EmailID:RandomId,LeadId: LeadId,email:emailData['personalizedEmail']['email'],emailTemplate:emailData['emailTemplate'],emailDesign:emailData['emailDesign']})
+  await adaptiveSequencePainPointsUsedPerLead.findOneAndUpdate({ sf_organization_id: "00D4T000000DicaUAC" ,LeadId: LeadId},{ $addToSet: { Usedpainpoints: emailData['painpoint'] } },{ upsert: true, new: true });
 
-  sgMail
-  .send(sendgridReadyEmailData)
-  .then((anyRes) => {
-    console.log('Email sent successfully');
-    res.json({...sendgridReadyEmailData,sendgrid:anyRes});
+  // sgMail
+  // .send(sendgridReadyEmailData)
+  // .then((anyRes) => {
+  //   console.log('Email sent successfully');
+  //   res.json({...sendgridReadyEmailData,sendgrid:anyRes});
 
-  })
-  .catch((error) => {
-    console.error('Error sending email:', error);
-  });
-
-
+  // })
+  // .catch((error) => {
+  //   console.error('Error sending email:', error);
+  // });
+}
 
 });
 
