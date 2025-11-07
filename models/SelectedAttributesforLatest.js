@@ -10,10 +10,13 @@ const Schema = mongoose.Schema(
   id: {
     type: String,
   }},
-  { strict: false, collection: "adaptive-sequence-emailTemplatesCTAPerLead", timestamps: true }
+  { strict: false, collection: "LatestAttributeSelections", timestamps: true }
 );
+
 // Schema.plugin(aggregatePaginate);
 
 //Schema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model("adaptive-sequence-emailTemplatesCTAPerLead", Schema);
+module.exports = mongoose.model("LatestAttributeSelections", Schema);
+
+

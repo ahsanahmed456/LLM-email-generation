@@ -3,12 +3,18 @@ const mongoose = require("mongoose");
 const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
 const Schema = mongoose.Schema(
-  {},
-  { strict: false, collection: "Activity_analytics", timestamps: true }
+  { _id: {
+    type: mongoose.Schema.Types.ObjectId,
+    auto: true,
+  },
+  id: {
+    type: String,
+  },},            
+  { strict: false, collection: "outreach_datasets", timestamps: true }
 );
 
 Schema.plugin(aggregatePaginate);
 
 //Schema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model("Activity_analytics", Schema);
+module.exports = mongoose.model("outreach_datasets", Schema);

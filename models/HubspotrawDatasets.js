@@ -10,10 +10,11 @@ const Schema = mongoose.Schema(
   id: {
     type: String,
   }},
-  { strict: false, collection: "adaptive-sequence-emailTemplatesCTAPerLead", timestamps: true }
+  { strict: false, collection: "HubspotrawDatasets", timestamps: true }
 );
+
 // Schema.plugin(aggregatePaginate);
 
-//Schema.plugin(mongoosePaginate);
+//Schema.plugin(mongoosePaginate);            
 
-module.exports = mongoose.model("adaptive-sequence-emailTemplatesCTAPerLead", Schema);
+module.exports = mongoose.model("HubspotrawDatasets", Schema);

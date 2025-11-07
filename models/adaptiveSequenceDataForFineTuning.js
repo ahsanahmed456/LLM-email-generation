@@ -9,9 +9,6 @@ const Schema = mongoose.Schema(
 
 // Schema.plugin(aggregatePaginate);
 
-//Schema.plugin(mongoosePaginate); 
-
+//Schema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model("adaptive-sequence-data-for-fine-tuning", Schema);
-
-   

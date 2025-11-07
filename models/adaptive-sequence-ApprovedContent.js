@@ -3,16 +3,12 @@ const mongoose = require("mongoose");
 // const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
 const Schema = mongoose.Schema(
-   {},
-   {
-     strict: false,
-     collection: "LeadLatestWithDaysInStage",
-     timestamps: true,
-     id: false 
-   }
- );
+  {},
+  { strict: false, collection: "adaptive-sequence-ApprovedContent", timestamps: true }
+);
+
 // Schema.plugin(aggregatePaginate);
 
 //Schema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model("LeadLatestWithDaysInStage", Schema);
+module.exports = mongoose.model("adaptive-sequence-ApprovedContent", Schema);

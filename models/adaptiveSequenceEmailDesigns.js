@@ -3,17 +3,12 @@ const mongoose = require("mongoose");
 // const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
 const Schema = mongoose.Schema(
-  { _id: {
-    type: mongoose.Schema.Types.ObjectId,
-    auto: true,
-  },
-  id: {
-    type: String,
-  }},{ strict: false, collection: "Activity-timeline", timestamps: true }
+  {},
+  { strict: false, collection: "adaptive-sequence-email-designs", timestamps: true }
 );
 
 // Schema.plugin(aggregatePaginate);
 
 //Schema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model("Activity-timeline", Schema);
+module.exports = mongoose.model("adaptive-sequence-email-designs", Schema);

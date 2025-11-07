@@ -4,11 +4,11 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema(
   {},
-  { strict: false, collection: "mlModelSelectedAttributes", timestamps: true }
+  { strict: false, collection: "MultipleQuestionSurveyResponses", timestamps: true }
 );
 
 // Schema.plugin(aggregatePaginate);
 
 //Schema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model("mlModelSelectedAttributes", Schema);
+module.exports = mongoose.model("MultipleQuestionSurveyResponses", Schema);

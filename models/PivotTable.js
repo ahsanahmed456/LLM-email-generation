@@ -4,11 +4,11 @@ const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
 const Schema = mongoose.Schema(
   {},
-  { strict: false, collection: "Activity_analytics", timestamps: true }
+  { strict: false, collection: "PivotTable", timestamps: true }
 );
 
 Schema.plugin(aggregatePaginate);
 
 //Schema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model("Activity_analytics", Schema);
+module.exports = mongoose.model("PivotTable", Schema);

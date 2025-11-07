@@ -3,18 +3,12 @@ const mongoose = require("mongoose");
 // const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
 const Schema = mongoose.Schema(
-  { _id: {
-    type: mongoose.Schema.Types.ObjectId,
-    auto: true,
-  },
-  id: {
-    type: String,
-  }},
-  { strict: false, collection: "Activity-History", timestamps: true }
+  {},
+  { strict: false, collection: "OpportunityLatestWithDaysInStage", timestamps: true }
 );
 
 // Schema.plugin(aggregatePaginate);
 
 //Schema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model("Activity-History", Schema);         
+module.exports = mongoose.model("OpportunityLatestWithDaysInStage", Schema);
